@@ -55,7 +55,7 @@ public class NelderMead {
                     // fe < fl
 
                     // a) - replace xh with xe
-                    startingValues.set(maxApex, strainedApex.clone());
+                    startingValues.set(maxApex, new Apex(strainedApex));
 
                     if (checkPrecision(startingValues)) {
                         // stop
@@ -66,7 +66,7 @@ public class NelderMead {
                     // fe >= fl
 
                     // б) - replace xh with xr
-                    startingValues.set(maxApex, reflectedApex.clone());
+                    startingValues.set(maxApex, new Apex(reflectedApex));
 
                     if (checkPrecision(startingValues)) {
                         // stop
@@ -82,7 +82,7 @@ public class NelderMead {
                     // fr <= fg
 
                     // Д.2) - replace xh with xr
-                    startingValues.set(maxApex, reflectedApex.clone());
+                    startingValues.set(maxApex, new Apex(reflectedApex));
 
                     if (checkPrecision(startingValues)) {
                         // stop
@@ -95,7 +95,7 @@ public class NelderMead {
                         // fr < fh
 
                         // E.1) - replace xh with xr
-                        startingValues.set(maxApex, reflectedApex.clone());
+                        startingValues.set(maxApex, new Apex(reflectedApex));
                     }
 
                     // fr >= fh
@@ -107,7 +107,7 @@ public class NelderMead {
                         // fc <= fh
 
                         // Ж.1) - replace xh with xc;
-                        startingValues.set(maxApex, compressedApex.clone());
+                        startingValues.set(maxApex, new Apex(compressedApex));
 
                         if (checkPrecision(startingValues)) {
                             // stop
@@ -119,7 +119,7 @@ public class NelderMead {
                         // З - double downsizing
                         for (int i = 0; i < startingValues.size(); i++) {
                             if (i != minApex) {
-                                startingValues.set(i, downsize(startingValues.get(i), startingValues.get(minApex)).clone());
+                                startingValues.set(i, downsize(startingValues.get(i), new Apex(startingValues.get(minApex))));
                                 startingValues.get(i).setFunctionValue(Minimising.minimisingFunction(startingValues.get(i).getCoordinates(), apexes));
                             }
                         }
@@ -147,7 +147,7 @@ public class NelderMead {
         List<Apex> startingValues = new LinkedList<>();
         startingValues.add(p0);
         for (int i = 1; i <= p0.getCoordinates().size(); i++) {
-            Apex p = p0.clone();
+            Apex p = new Apex(p0);
             double x = p.getCoordinates().get(i - 1);
             p.getCoordinates().remove(i - 1);
             x++;

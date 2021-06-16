@@ -3,8 +3,10 @@ package org.eric.stainertreeproblem.nelderMead.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Apex implements Cloneable {
-    private List<Double> coordinates;
+public class Apex{
+    // mutable
+    private final List<Double> coordinates;
+    // primitive so immutable
     private double functionValue;
 
     public Apex(List<Double> coordinates, double functionValue) {
@@ -12,10 +14,10 @@ public class Apex implements Cloneable {
         this.functionValue = functionValue;
     }
 
-    @Override
-    public Apex clone() {
-        List<Double> coordinates = new ArrayList<>(this.getCoordinates());
-        return new Apex(coordinates, this.getFunctionValue());
+    // Copy constructor
+    public Apex(Apex apex) {
+        this.coordinates = new ArrayList<>(apex.getCoordinates());
+        this.functionValue = apex.getFunctionValue();
     }
 
     public double getFunctionValue() {
@@ -28,9 +30,5 @@ public class Apex implements Cloneable {
 
     public List<Double> getCoordinates() {
         return coordinates;
-    }
-
-    public void setCoordinates(List<Double> coordinates) {
-        this.coordinates = coordinates;
     }
 }
