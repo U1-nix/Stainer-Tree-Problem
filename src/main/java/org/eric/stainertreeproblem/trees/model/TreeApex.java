@@ -4,19 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TreeApex {
-    private int id;
+    private final int id;
     private List<Double> coordinates;
     private int previousApexId;
-    private boolean connectedFurther;
     private double distanceToParent;
-    private boolean isAdditional;
+    private final boolean isAdditional;
+
+    public TreeApex(int id, boolean isAdditional) {
+        this.id = id;
+        this.isAdditional = isAdditional;
+    }
+
+    // copy constructor
+    public TreeApex(TreeApex treeApex) {
+        this.id = treeApex.getId();
+        this.coordinates = new ArrayList<>(treeApex.getCoordinates());
+        this.previousApexId = treeApex.getPreviousApexId();
+        this.distanceToParent = treeApex.getDistanceToParent();
+        this.isAdditional = treeApex.isAdditional();
+    }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public List<Double> getCoordinates() {
@@ -35,14 +44,6 @@ public class TreeApex {
         this.previousApexId = previousApexId;
     }
 
-    public boolean isConnectedFurther() {
-        return connectedFurther;
-    }
-
-    public void setConnectedFurther(boolean connectedFurther) {
-        this.connectedFurther = connectedFurther;
-    }
-
     public double getDistanceToParent() {
         return distanceToParent;
     }
@@ -53,21 +54,5 @@ public class TreeApex {
 
     public boolean isAdditional() {
         return isAdditional;
-    }
-
-    public void setAdditional(boolean additional) {
-        isAdditional = additional;
-    }
-
-    @Override
-    public TreeApex clone() {
-        TreeApex newApex = new TreeApex();
-        newApex.id = this.id;
-        newApex.coordinates = new ArrayList<>(this.coordinates);
-        newApex.previousApexId = this.previousApexId;
-        newApex.connectedFurther = this.connectedFurther;
-        newApex.distanceToParent = this.distanceToParent;
-        newApex.isAdditional = this.isAdditional;
-        return newApex;
     }
 }

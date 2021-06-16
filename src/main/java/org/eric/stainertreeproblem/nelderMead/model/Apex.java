@@ -14,7 +14,7 @@ public class Apex{
         this.functionValue = functionValue;
     }
 
-    // Copy constructor
+    // copy constructor
     public Apex(Apex apex) {
         this.coordinates = new ArrayList<>(apex.getCoordinates());
         this.functionValue = apex.getFunctionValue();

@@ -31,7 +31,6 @@ public class Minimising {
             if (e.getPreviousApexId() != -2) {
                 e.setPreviousApexId(-1);
             }
-            e.setConnectedFurther(false);
             e.setDistanceToParent(Double.MAX_VALUE);
         }
     }

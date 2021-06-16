@@ -31,12 +31,6 @@ public class Prim {
             if (minDistances.size() != 0) {
                 Distance minDistance = findMinDistance(minDistances);
                 for (TreeApex e : apexes) {
-                    if (e.getId() == minDistance.endingApexId) {
-                        e.setConnectedFurther(true);
-                        break;
-                    }
-                }
-                for (TreeApex e : apexes) {
                     if (e.getId() == minDistance.startingApexId) {
                         e.setPreviousApexId(minDistance.endingApexId);
                         e.setDistanceToParent(minDistance.distanceToParent);
